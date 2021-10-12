@@ -5,7 +5,7 @@ import {
     adjustValuesWithTwoDigit,
     sumArrayIsMod10,
     numberCreditCardIsValid,
-} from "../Component/"
+} from "../Component"
 
 describe("tratamentData", () => {
     it("Should return array of number", () => {

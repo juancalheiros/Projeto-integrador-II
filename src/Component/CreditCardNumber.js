@@ -1,11 +1,13 @@
 import React , { useState } from 'react'
-import TextField from '@material-ui/core/TextField'
+import { TextField } from '@material-ui/core'
+
 import  CreditCardNumberFormat  from './CreditCardNumberFormat'
 import { numberCreditCardIsValid } from './ValidateCreditCardNumber'
 
+
 const CreditCardNumber = props => {
-  
   const {
+    className,
     handleCreditCardNumber,
     handleCanHaveErrorCreditCard,
   } = props
@@ -14,12 +16,11 @@ const CreditCardNumber = props => {
   const [isValidNumber,setIsValidNumber] = useState(true)
   const [menssage, setMenssage] = useState(undefined)
 
+
   const handleChange = event => {
     const { value } = event.target
     
-    if(isInitialState(value)){
-      clearValues()
-    }
+    if(isInitialState(value)) clearValues()
     else {
       const valueIsValid = numberCreditCardIsValid(value)
       const respMenssage = valueIsValid ? "" : "Number credit card invalid"
@@ -29,7 +30,7 @@ const CreditCardNumber = props => {
     
   }  
 
-  const setUpdates = (value,isValidNumber,menssage) =>{
+  const setUpdates = (value,isValidNumber,menssage) => {
     setValue(value)
     setMenssage(menssage)
     setIsValidNumber(isValidNumber)
@@ -38,17 +39,15 @@ const CreditCardNumber = props => {
     handleCanHaveErrorCreditCard(isValidNumber)
   }
 
-  const clearValues = () =>{
+  const clearValues = () => {
     setValue(null)
     setIsValidNumber(true)
     setMenssage(undefined)
   }
 
-  const isInitialState = value => {
-    return value === null || value === ''
-  }
+  const isInitialState = value => value === null || value === '' 
 
-  
+
   return (
     <TextField
       color="primary"
@@ -56,10 +55,11 @@ const CreditCardNumber = props => {
       name="numberformat"
       id="number-credit-card"
       label="Number your credit card"
-      onChange={handleChange}
       value={value}
-      error={!isValidNumber}
       helperText={menssage}
+      error={!isValidNumber}
+      className = {className}
+      onChange={handleChange}
       InputProps={{
         inputComponent: CreditCardNumberFormat,
       }}

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import NumberFormat from 'react-number-format'
 
-export default function ExpirationDateFormat(props) {
+const ExpirationDateFormat = (props) => {
     const { inputRef, onChange, name,...other } = props
     
     const handleChange = ({value}) => {
@@ -26,6 +26,9 @@ export default function ExpirationDateFormat(props) {
         />
     )
 }
+
+
+export default ExpirationDateFormat 
 
 ExpirationDateFormat.propTypes = {
     inputRef: PropTypes.func.isRequired,

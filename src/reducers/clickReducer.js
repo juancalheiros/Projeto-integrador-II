@@ -5,10 +5,10 @@ import {
 } from '../actions'
 
 const initialState = {
-    creditCardNumber: null,
     cvv: null,
     expirationDate: null,
-  }
+    creditCardNumber: null,
+}
 
 export const clickReducer = (state = initialState, action) => { 
     switch (action.type) {

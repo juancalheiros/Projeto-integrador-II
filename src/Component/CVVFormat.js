@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import NumberFormat from 'react-number-format'
 
-export default function CVVFormat(props) {
+const CVVFormat = (props) => {
     const { inputRef, onChange, name,...other } = props
     
     const handleChange = ({value}) => {
@@ -26,6 +26,9 @@ export default function CVVFormat(props) {
         />
     )
 }
+
+
+export default CVVFormat
 
 CVVFormat.propTypes = {
     inputRef: PropTypes.func.isRequired,

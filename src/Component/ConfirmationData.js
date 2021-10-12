@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 const ConfirmationData = props => {
     const {
-      creditCardNumber,
       cvv,
       date,
+      creditCardNumber,
     } = props
 
     const expirationDate = () => {
@@ -24,10 +24,11 @@ const ConfirmationData = props => {
     )
 }
 
-const mapStateToProps = store =>({
+const mapStateToProps = store => ({
   creditCardNumber: store.clickState.creditCardNumber,
   cvv: store.clickState.cvv,
   date: store.clickState.expirationDate,
 })
+
 
 export default connect(mapStateToProps)(ConfirmationData)

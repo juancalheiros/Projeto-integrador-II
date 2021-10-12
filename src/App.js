@@ -9,11 +9,11 @@ import {
 } from '@material-ui/core'
 
 import { 
-  CreditCardNumber,
-  SaveButton,
   CVV,
+  SaveButton,
   ExpirationDate,
-  ConfirmationData
+  ConfirmationData,
+  CreditCardNumber,
 } from './Component'
 
 
@@ -21,12 +21,31 @@ const useStyles = makeStyles(() => ({
     root: {
       marginTop: "10%",
       marginLeft: "50%",
-      maxHeight: "500px",
-      maxWidth: "400px",
+      maxHeight: "600px",
+      maxWidth: "430px",
       marginInline: "auto",
     },
     cardContent: {
       textAlignLast: "center",
+    },
+    creditCard: {
+      margin: "2%",
+      maxWidth:"200px",
+    },
+    cvv: {
+      margin: "2%",
+      maxWidth:"80px",
+      right:"109px",
+    },
+    expirationDate: {
+      margin: "2%",
+      maxWidth:"140px",
+    },
+    save: {
+      margin: "2%",
+      maxWidth:"70px",
+      top:"30px",
+      left:"100px",
     }
   })
 );
@@ -40,68 +59,56 @@ const  App = props => {
     date, 
   } = props
   
-
   const [creditCardNumber, setCreditCardNumber] = useState(creditCard)
-  const [canShowCreditCardNumber,setCanShowCreditCardNumber] = useState(true)
+  const [canErrorCreditCardNumber,setCanErrorCreditCardNumber] = useState(undefined)
 
   const [cardVerificationValue,setCardVerificationValue] = useState(cvv)
-  const [canShowCardVerificationValue,setCanShowCardVerificationValue] = useState(false)
+  const [canErrorCardVerificationValue,setCanErrorCardVerificationValue] = useState(undefined)
   
   const [expirateDate,setExpirateDate] = useState(date)
-  const [canShowExpirationDate,setCanShowExpirationDate] = useState(false)
+  const [canErrorExpirationDate,setCanErrorExpirationDate] = useState(undefined)
 
   const [canShowConfirmationData, setCanShowConfirmationData] = useState(false)
   
-  const [canHabilitSaveButton, setCanHabilitSaveButton] = useState(false)
+  const [canShowSaveButton, setCanShowSaveButton] = useState(true)
   
-
-  // Number Credit Card
+  
+  // Handle Number Credit Card
   const handleCreditCardNumber = value => {
     setCreditCardNumber(value)
   }
 
   const handleCanHaveErrorCreditCard = value => {
-    setCanHabilitSaveButton(value)
+    setCanErrorCreditCardNumber(value)
   }
 
-  const handleShowCreditCardNumber = value => {
-    setCanShowCreditCardNumber(value)
-  }
-
-  // Card Verification Value
+  // Handle Card Verification Value
   const handleCardVerifiCationValue = value =>{
     setCardVerificationValue(value)
   }
 
   const handleCanHaveErrorCardVerificationValue = value => {
-    setCanHabilitSaveButton(value)
+    setCanErrorCardVerificationValue(value)
   }
 
-  const handleShowCardVerificationValue = value => {
-    setCanShowCardVerificationValue(value)
-  }
-
-  // Expirate Date
+  // Handle Expirate Date
   const handleExpirateDate = value => {
     setExpirateDate(value)
   }
 
   const handleCanHaveErrorExpirateDate = value => {
-    setCanHabilitSaveButton(value)
+    setCanErrorExpirationDate(value)
   }
 
-  const handleShowExpirateDate = value => {
-    setCanShowExpirationDate(value)
-  }
-
-  // Confirmation Data
+  // Handle Confirmation Data
   const handleShowConfirmationData = value => {
     setCanShowConfirmationData(value)
   }
 
-  // Save Button
-  const handleCanHabilitSaveButton = value => {
-    setCanHabilitSaveButton(value)
+  // Handle Save Button
+  const fieldError = canErrorCreditCardNumber && canErrorCardVerificationValue && canErrorExpirationDate
+  const handleSetShowSaveButton = value => {
+    setCanShowSaveButton(value)
   }
   
   return (
@@ -128,41 +135,40 @@ const  App = props => {
           >
             Verify Number Credit Card
           </Typography>
-          
-          { canShowCreditCardNumber && 
-            <CreditCardNumber 
+          { !canShowConfirmationData &&
+            <CreditCardNumber
+              className={classes.creditCard} 
               handleCreditCardNumber={handleCreditCardNumber}
               handleCanHaveErrorCreditCard = {handleCanHaveErrorCreditCard}
             />
           }
-          
-          { canShowCardVerificationValue && 
-            <CVV
-              handleCardVerifiCationValue={handleCardVerifiCationValue}
-              handleCanHaveErrorCardVerificationValue={handleCanHaveErrorCardVerificationValue}
-            />
-          }
-          
-          { canShowExpirationDate && 
+          { !canShowConfirmationData &&
             <ExpirationDate
+              className={classes.expirationDate}
               handleExpirateDate={handleExpirateDate}
               handleCanHaveErrorExpirateDate={handleCanHaveErrorExpirateDate}
             />
           }
-
+          { !canShowConfirmationData &&
+            <CVV
+              className={classes.cvv}
+              handleCardVerifiCationValue={handleCardVerifiCationValue}
+              handleCanHaveErrorCardVerificationValue={handleCanHaveErrorCardVerificationValue}
+            />
+          }
           { canShowConfirmationData && <ConfirmationData/> }
           
-          <SaveButton 
-            habilited={canHabilitSaveButton}
-            handleShowCreditCardNumber ={handleShowCreditCardNumber}
-            handleShowCardVerificationValue={handleShowCardVerificationValue}
-            handleShowExpirateDate={handleShowExpirateDate}
-            handleShowConfirmationData={handleShowConfirmationData}
-            creditCard={creditCardNumber}
-            cardVerificationValue={cardVerificationValue}
-            date={expirateDate}
-            handleCanHabilitSaveButton={handleCanHabilitSaveButton}
-          />
+          { canShowSaveButton &&
+            <SaveButton 
+              className={classes.save}
+              fieldError={fieldError}
+              handleShowConfirmationData={handleShowConfirmationData}
+              handleSetShowSaveButton={handleSetShowSaveButton}
+              creditCard={creditCardNumber}
+              cardVerificationValue={cardVerificationValue}
+              date={expirateDate}
+            />
+          }
 
         </CardContent>
 
@@ -173,9 +179,10 @@ const  App = props => {
 }
 
 const mapStateToProps = store => ({
-  creditCard: store.clickState.creditCardNumber,
   cvv: store.clickState.cvv,
   date: store.clickState.expirationDate,
+  creditCard: store.clickState.creditCardNumber,
 })
+
 
 export default connect (mapStateToProps)(App)

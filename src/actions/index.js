@@ -5,13 +5,13 @@ export const creditCardNumber = value => ({
 })
 
 export const CVV = 'CVV'
-export const cvv = value =>({
+export const cvv = value => ({
     type: CVV,
     newValue: value,
 })
 
 export const EXPIRATION_DATE = 'EXPIRATION_DATE'
-export const expirateDate = value =>({
+export const expirateDate = value => ({
     type: EXPIRATION_DATE,
     newValue: value,
 })

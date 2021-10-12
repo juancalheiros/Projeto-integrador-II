@@ -1,6 +1,6 @@
-function numberCreditCardIsValid(numberCreditCard) {
+const numberCreditCardIsValid = (numberCreditCard) => {
     
-    if (numberCreditCard === null || numberCreditCard.length !== 16){
+    if (numberCreditCard === null || numberCreditCard.length !== 16) {
         return false
     }
 
@@ -13,16 +13,14 @@ function numberCreditCardIsValid(numberCreditCard) {
     return numberIsValid
 }
  
-function tratamentData(numberCreditCard){
+const tratamentData = (numberCreditCard) => {
     const sliptString = numberCreditCard.split("")
     return sliptString.map(currentValue => { return Number(currentValue) })
 }
 
-function numberIsOdd(value){
-    return value%2 !== 0
-}
+const numberIsOdd = (value) => value%2 !== 0
 
-function doubleOddIndexes(arrayOfValues) {
+const doubleOddIndexes = (arrayOfValues) => {
     
     return  arrayOfValues.map((currentValue, index, array) => {
         
@@ -33,7 +31,7 @@ function doubleOddIndexes(arrayOfValues) {
     })
 }
 
-function adjustValuesWithTwoDigit(arrayOfValues) {
+const adjustValuesWithTwoDigit = (arrayOfValues) => {
 
     return arrayOfValues.map((currValue, index, array) => {
         const convertValueToString = (currValue).toString()
@@ -53,7 +51,7 @@ function adjustValuesWithTwoDigit(arrayOfValues) {
     })
 }
 
-function sumArrayIsMod10(array) {
+const sumArrayIsMod10 = (array) => {
     
     const result = array.reduce((acc, currentValue) => {
         return acc + currentValue

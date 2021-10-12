@@ -1,11 +1,12 @@
-import React,{useState}  from 'react'
-import TextField from '@material-ui/core/TextField'
+import React,{ useState }  from 'react'
+import { TextField } from '@material-ui/core'
+
 import CVVFormat from './CVVFormat'
 
 
 const CVV = props => {
-  
   const { 
+    className,
     handleCardVerifiCationValue, 
     handleCanHaveErrorCardVerificationValue, 
   } = props
@@ -14,32 +15,28 @@ const CVV = props => {
   const [isValidNumber,setIsValidNumber] =useState(true)
   const [menssage,setMenssage] = useState(undefined)
 
-  const handleChange = event =>{
+  const handleChange = event => {
     const { value } = event.target
       
-    if(isInitialState(value)){
-      clearValues()
-    }
+    if(isInitialState(value)) clearValues() 
     else {
       const RespMenssage = value.length === 3 ? '':'Quantity insufficient of number'
       const valueIsValid = RespMenssage === ''
       
-      setUpdates(value,RespMenssage,valueIsValid)
+      setUpdates(value, RespMenssage, valueIsValid)
     }
 
   }
 
-  const isInitialState = value => {
-    return value === null || value === ''
-  }
+  const isInitialState = value => value === null || value === '' 
 
-  const clearValues = () =>{
+  const clearValues = () => {
     setValue(null)
     setMenssage(undefined)
     setIsValidNumber(true)
   }
 
-  const setUpdates = (value,RespMenssage,isValidNumber) =>{
+  const setUpdates = (value,RespMenssage,isValidNumber) => {
     setValue(value)
     setMenssage(RespMenssage)
     setIsValidNumber(isValidNumber)
@@ -50,15 +47,16 @@ const CVV = props => {
 
   return (
     <TextField
+      name="cvv"
+      label="CVV"
       color="primary"
       variant="outlined"
-      name="cvv"
       id="cvv-number-credit-card"
-      label="CVV your credit card"
-      onChange={handleChange}
-      error = {!isValidNumber}
       value={value}
       helperText={menssage}
+      className={className}
+      onChange={handleChange}
+      error = {!isValidNumber}
       InputProps={{
         inputComponent: CVVFormat,
       }}

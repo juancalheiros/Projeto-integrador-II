@@ -1,0 +1,9 @@
+version: "3"
+
+services: 
+  check-credit-card:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes: 
+      - .:/usr/app

@@ -1,41 +1,45 @@
 import React, {useState}  from 'react'
-import TextField from '@material-ui/core/TextField'
+import { TextField } from '@material-ui/core'
+
 import ExpirationDateFormat from './ExpirationDateFormat'
 
 
-export default function ExpirationDate(props) {
-  const { handleExpirateDate, handleCanHaveErrorExpirateDate } = props
+const ExpirationDate = (props) => {
+  const { 
+    className,
+    handleExpirateDate, 
+    handleCanHaveErrorExpirateDate, 
+  } = props
   
   const [value, setValue] = useState(null)
-  const [isValidData,setIsValiData] = useState(true)
+  const [isValidData, setIsValiData] = useState(true)
   const [menssage, setMenssage] = useState(undefined)
+
 
   const handleChange = event => {
     const { value } = event.target
-    const {mounth, year} = extractData(value)
+    const { mounth, year } = extractData(value)
     
-    if(isInitialState(value)){
-      clearValues()
-    }
+    if(isInitialState(value)) clearValues() 
     else {
       const now  = new Date()
       const dateActual = now.getFullYear()
       const menssageMounth = mounth > 12 || mounth <= 0 ? "Mounth invalid":"" 
       const  menssageYear =  yearIsValid(year,dateActual) ? "Year invalid":""
       
-
       const respMenssage = menssageMounth + " " + menssageYear
       const isValidDate = (menssageYear === "" && menssageMounth === "") 
       
-      setUpdates(value,respMenssage,isValidDate)
+      setUpdates(value, respMenssage, isValidDate)
     }
     
   } 
 
-  const yearIsValid = (year,dateActual) => {
+  const yearIsValid = (year, dateActual) => {
     return (year !== null && ((year < dateActual) || (year > dateActual+10)))
   }
-  const setUpdates = (value,menssage,isValidDate) => {
+
+  const setUpdates = (value, menssage, isValidDate) => {
     setValue(value)
     setMenssage(menssage)
     setIsValiData(isValidDate)
@@ -50,16 +54,13 @@ export default function ExpirationDate(props) {
     setIsValiData(true)
   }
 
-  const isInitialState = value => {
-    return value === null || value === ''
-  }
+  const isInitialState = value => value === null || value === '' 
 
   const extractData = data => {
-
     const  mounth = data.slice(0,2)
     const  year = data.slice(2)
 
-   return {mounth, year}
+   return { mounth, year }
   }
 
 
@@ -70,13 +71,17 @@ export default function ExpirationDate(props) {
       name="expirationDate"
       id="expiration-date"
       label="Expiration date"
-      onChange={handleChange}
       value={value}
       error={!isValidData}
       helperText={menssage}
+      className={className}
+      onChange={handleChange}
       InputProps={{
         inputComponent: ExpirationDateFormat,
       }}
     />
   )
 }
+
+
+export default ExpirationDate
