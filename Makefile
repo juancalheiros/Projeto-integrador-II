@@ -9,3 +9,9 @@ run:
 
 run-docker:
 	@docker-compose up
+
+down-docker:
+	@docker-compose down -v
+
+lint:
+	@eslint src/
