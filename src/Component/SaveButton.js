@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import SaveIcon from '@material-ui/icons/Save'
@@ -50,3 +51,14 @@ const mapDispatchToProps = dispatch => ({dispatch})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(SaveButton)
+
+SaveButton.propTypes = {
+  date:  PropTypes.string.isRequired,
+  dispatch:  PropTypes.func.isRequired,
+  className:  PropTypes.string.isRequired,
+  creditCard:  PropTypes.string.isRequired,
+  fieldError:  PropTypes.bool.isRequired,
+  cardVerificationValue:  PropTypes.string.isRequired,
+  handleSetShowSaveButton:  PropTypes.func.isRequired,
+  handleShowConfirmationData:  PropTypes.func.isRequired,
+}

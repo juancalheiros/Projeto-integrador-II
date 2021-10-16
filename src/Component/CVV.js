@@ -1,4 +1,5 @@
 import React,{ useState }  from 'react'
+import PropTypes from 'prop-types'
 import { TextField } from '@material-ui/core'
 
 import CVVFormat from './CVVFormat'
@@ -66,3 +67,9 @@ const CVV = props => {
 
 
 export default CVV
+
+CVV.propTypes = { 
+  className: PropTypes.object.isRequired,
+  handleCardVerifiCationValue: PropTypes.func.isRequired, 
+  handleCanHaveErrorCardVerificationValue: PropTypes.func.isRequired,
+}

@@ -1,4 +1,5 @@
 import React, {useState}  from 'react'
+import PropTypes from 'prop-types'
 import { TextField } from '@material-ui/core'
 
 import ExpirationDateFormat from './ExpirationDateFormat'
@@ -85,3 +86,9 @@ const ExpirationDate = (props) => {
 
 
 export default ExpirationDate
+
+ExpirationDate.propTypes = {
+  className: PropTypes.object.isRequired,
+  handleExpirateDate: PropTypes.func.isRequired, 
+  handleCanHaveErrorExpirateDate: PropTypes.func.isRequired,
+}

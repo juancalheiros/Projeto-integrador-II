@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 const ConfirmationData = props => {
@@ -32,3 +33,9 @@ const mapStateToProps = store => ({
 
 
 export default connect(mapStateToProps)(ConfirmationData)
+
+ConfirmationData.propTypes = {
+  cvv:PropTypes.string.isRequired,
+  date:PropTypes.string.isRequired, 
+  creditCardNumber: PropTypes.string.isRequired,
+}

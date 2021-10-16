@@ -60,7 +60,7 @@ const sumArrayIsMod10 = (array) => {
     return result%10 === 0
 }
 
-module.exports = {
+export {
     numberIsOdd,
     numberCreditCardIsValid,
     tratamentData,

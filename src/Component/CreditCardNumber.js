@@ -1,4 +1,5 @@
 import React , { useState } from 'react'
+import PropTypes from 'prop-types'
 import { TextField } from '@material-ui/core'
 
 import  CreditCardNumberFormat  from './CreditCardNumberFormat'
@@ -69,3 +70,9 @@ const CreditCardNumber = props => {
 
 
 export default CreditCardNumber
+
+CreditCardNumber.propTypes = { 
+  className: PropTypes.object.isRequired,
+  handleCreditCardNumber: PropTypes.func.isRequired, 
+  handleCanHaveErrorCreditCard: PropTypes.func.isRequired,
+}

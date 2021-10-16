@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   Card, 
@@ -186,3 +187,9 @@ const mapStateToProps = store => ({
 
 
 export default connect (mapStateToProps)(App)
+
+App.propTypes = {
+  creditCard: PropTypes.string.isRequired,
+  cvv: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired, 
+}
