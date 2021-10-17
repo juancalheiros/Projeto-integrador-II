@@ -2,11 +2,10 @@ setup:
 	@yarn
 
 test:
-	@yarn test
+	@yarn test --watchAll
 
 run:
 	@yarn start 
-
 
 lint:
 	@eslint src/
@@ -27,11 +26,11 @@ down-docker:
 images-docker: 
 	@docker images -a
 
-id-images-docker:
+id-image-docker:
 	@docker images -a projeto-integrador-ii_check-credit-card -q
 
-rm-images-docker:
+clear-image-docker:
 	@docker rmi docker images a projeto-integrador-ii_check-credit-card q -f
 
-rm-all-docker:
-	@make rm-images-docker && make down-docker
+clear-all-docker:
+	@make clear-image-docker && make down-docker
