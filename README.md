@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Bem-vindo ao app validate-credit-card
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação React que tem o objetivo de verificar se a sequência numerica de um cartão de credito é valida.
 
-## Available Scripts
+Para ser feito essa verificação, usa-se o algoritmo de luhn,
+[Luhn_algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm), esse algoritmo é de dominio público e é usado por todos os credores de credito.
 
-In the project directory, you can run:
+Conforme for sendo inserido os dados do cartão a aplicação irá lhe exibir o resultado de sua validação, isso também aplica para o cvv e data de validade do cartão.
 
-### `yarn start`
+Está aplicação obiviamente não armazena nenhum dado em banco nem se comunica com qualquer API, apenas verifica se a sequência é valida, caso tenha receio pode testar com esses numeros:
+```
+7992 7398 7100 0004
+0000 0000 0000 0000
+1234 5678 9031 2345
+1111 1111 1111 1125
+5465 0321 4654 6544
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Obs: O cvv e a data de expiração pode ser qualquer valor.
+## Dependências 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Docker: 20.10.8
 
-### `yarn test`
+ou
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Node: 16.5.0
 
-### `yarn build`
+## Rodando local
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Se tiver o docker instalado 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    `make run-docker`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Caso tenha apenas o node
 
-### `yarn eject`
+    `make setup`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    `make run`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Depois de rodar os comando acesse [http://localhost:3000](http://localhost:3000)
+## Testes
+`make test`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Lint
+`make lint`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Docker
+* Fazer o build e run local
 
-## Learn More
+    `make build-run-docker`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Exibir os container
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    `make container-docker`
 
-### Code Splitting
+* Exibir as images
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    `make images-docker`
 
-### Analyzing the Bundle Size
+* Pegar o ID da imagem
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    `make id-image-docker`
 
-### Making a Progressive Web App
+* Removendo volumes
+    
+    `make down-docker`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Limpar a imagem docker desta aplicação
 
-### Advanced Configuration
+    `make clear-image-docker`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* Limpar tudo (image e container desta aplicação)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    `make clear-all-docker`
