@@ -23,30 +23,30 @@ const useStyles = makeStyles(() => ({
       marginTop: "10%",
       marginLeft: "50%",
       maxHeight: "600px",
-      maxWidth: "430px",
+      maxWidth: "390px",
       marginInline: "auto",
     },
     cardContent: {
       textAlignLast: "center",
     },
     creditCard: {
-      margin: "2%",
-      maxWidth:"200px",
+      margin: "2% 7% 2% 2%",
+      maxWidth:"170px",
     },
     cvv: {
       margin: "2%",
       maxWidth:"80px",
-      right:"109px",
+      right:"20%",
     },
     expirationDate: {
       margin: "2%",
-      maxWidth:"140px",
+      maxWidth:"100px",
     },
     save: {
       margin: "2%",
       maxWidth:"70px",
       top:"30px",
-      left:"100px",
+      left:"10%",
     }
   })
 );
